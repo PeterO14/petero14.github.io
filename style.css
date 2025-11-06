@@ -16,7 +16,7 @@ header {
 }
 
 canvas {
-  touch-action: none;
+  /* touch-action: none; */
   max-width: 100%;
   height: auto;
   border: 1px solid #ccc;
