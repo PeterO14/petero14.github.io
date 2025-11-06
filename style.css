@@ -8,6 +8,8 @@ body {
 }
 
 header {
+  padding: 2rem 1rem;
+  font-weight: bold;
   /* background: #007acc; */
   /* color: white; */
   /* padding: 2rem 1rem; */
