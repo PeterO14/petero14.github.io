@@ -1,15 +1,15 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-// // Simple scaling for smaller screens (optional)
-// function fitCanvasToWindow() {
-//   const maxWidth = Math.min(window.innerWidth - 20, 800);
-//   const aspect = canvas.width / canvas.height;
-//   canvas.style.width = maxWidth + "px";
-//   canvas.style.height = Math.round(maxWidth / aspect) + "px";
-// }
-// fitCanvasToWindow();
-// window.addEventListener("resize", fitCanvasToWindow);
+// Simple scaling for smaller screens (optional)
+function fitCanvasToWindow() {
+  const maxWidth = Math.min(window.innerWidth - 20, 800);
+  const aspect = canvas.width / canvas.height;
+  canvas.style.width = maxWidth + "px";
+  canvas.style.height = Math.round(maxWidth / aspect) + "px";
+}
+fitCanvasToWindow();
+window.addEventListener("resize", fitCanvasToWindow);
 
 let player = { x: 50, y: 250, size: 20, vy: 0, jump: -9, gravity: 0.5, grounded: true };
 let obstacles = [{ x: 600, width: 20, height: -30 }];
@@ -69,11 +69,23 @@ function jump() {
   }
 }
 
+// Spacebar jump
 document.addEventListener("keydown", e => {
-  if (player.grounded) {
-    player.vy = player.jump;
-    player.grounded = false;
+  if (e.code === "Space") {
+    e.preventDefault();
+    jump();
   }
 });
+
+// Works on laptops, phones, tablets — covers all input types
+function handleInput(e) {
+  e.preventDefault();
+  jump();
+}
+
+// Listen on the entire document
+document.addEventListener("mousedown", handleInput);
+document.addEventListener("touchstart", handleInput, { passive: false });
+document.addEventListener("pointerdown", handleInput);
 
 draw();
