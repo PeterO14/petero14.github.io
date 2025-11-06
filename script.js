@@ -2,7 +2,7 @@ const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
 let player = { x: 50, y: 250, size: 20, vy: 0, jump: -9, gravity: 0.5, grounded: true };
-let obstacles = [{ x: 600, width: 20, height: 50 }];
+let obstacles = [{ x: 600, width: 20, height: -50 }];
 let speed = 4;
 
 function draw() {
