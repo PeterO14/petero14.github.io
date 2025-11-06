@@ -63,7 +63,7 @@ function draw() {
 }
 
 function jump() {
-  if (player.ground) {
+  if (player.grounded) {
     player.vy = player.jump
     player.grounded = false;
   }
