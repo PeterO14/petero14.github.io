@@ -1,10 +1,6 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-let player = { x: 50, y: 250, size: 20, vy: 0, jump: -9, gravity: 0.5, grounded: true };
-let obstacles = [{ x: 600, width: 20, height: -50 }];
-let speed = 4;
-
 // Simple scaling for smaller screens (optional)
 function fitCanvasToWindow() {
   const maxWidth = Math.min(window.innerWidth - 20, 800);
@@ -14,6 +10,10 @@ function fitCanvasToWindow() {
 }
 fitCanvasToWindow();
 window.addEventListener("resize", fitCanvasToWindow);
+
+let player = { x: 50, y: 250, size: 20, vy: 0, jump: -9, gravity: 0.5, grounded: true };
+let obstacles = [{ x: 600, width: 20, height: -30 }];
+let speed = 4;
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -69,6 +69,7 @@ function jump() {
   }
 }
 
+// Spacebar jump
 document.addEventListener("keydown", e => {
   if (e.code === "Space") {
     e.preventDefault();
@@ -76,13 +77,15 @@ document.addEventListener("keydown", e => {
   }
 });
 
-// Pointer (touch + mouse) jump — attach to canvas
-// Use { passive: false } so we can call preventDefault if needed
-canvas.addEventListener("pointerdown", (e) => {
-  // if you want to ignore right-click/secondary button:
-  if (e.pointerType === "mouse" && e.button !== 0) return;
-  e.preventDefault(); // prevents page from stealing the touch on some mobile browsers
+// Works on laptops, phones, tablets — covers all input types
+function handleInput(e) {
+  e.preventDefault();
   jump();
-}, { passive: false });
+}
+
+// Listen on the entire document, not just the canvas
+document.addEventListener("mousedown", handleInput);
+document.addEventListener("touchstart", handleInput, { passive: false });
+document.addEventListener("pointerdown", handleInput);
 
 draw();
