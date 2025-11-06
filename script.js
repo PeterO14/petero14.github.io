@@ -50,11 +50,19 @@ function draw() {
   requestAnimationFrame(draw);
 }
 
-document.addEventListener("keydown", e => {
-  if (e.code === "Space" && player.grounded) {
-    player.vy = player.jump;
+function jump() {
+  if (player.ground) {
+    player.vy = player.jump
     player.grounded = false;
   }
+}
+
+document.addEventListener("keydown", e => {
+  if (e.code === "Space") jump()
 });
+
+// Jump on tap or click
+canvas.addEventListener("touchstart", jump);
+canvas.addEventListener("mousedown", jump);
 
 draw();
