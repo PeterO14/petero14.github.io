@@ -15,7 +15,7 @@ fitCanvasToWindow();
 window.addEventListener("resize", fitCanvasToWindow);
 
 let player = { x: 50, y: 250, size: 20, vy: 0, jump: -9, gravity: 0.5, grounded: true };
-let obstacles = [{ x: 600, width: 20, height: 30 }];
+let obstacles = [{ x: 600, width: 20, height: -10 }];
 let speed = 4;
 
 function draw() {
@@ -82,23 +82,42 @@ document.addEventListener("keydown", e => {
   }
 });
 
-function handleInput(e) {
-  e.preventDefault();
-  jump();
-}
-
 document.addEventListener("mousedown", handleInput);
 document.addEventListener("touchstart", handleInput, { passive: false });
 document.addEventListener("pointerdown", handleInput);
 
-// Initial draw to show the game state
-ctx.clearRect(0, 0, canvas.width, canvas.height);
-ctx.fillStyle = "skyblue";
-ctx.fillRect(0, 0, canvas.width, canvas.height);
-ctx.fillStyle = "green";
-ctx.fillRect(0, 270, canvas.width, 30);
-ctx.fillStyle = "red";
-ctx.fillRect(player.x, player.y, player.size, player.size);
+function drawInitialState() {
+  // Sky
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "skyblue";
+
+  // Ground
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "green";
+
+  // Player
+  ctx.fillRect(0, 270, canvas.width, 30);
+  ctx.fillStyle = "red";
+  ctx.fillRect(player.x, player.y, player.size, player.size);
+}
+
+
+function handleInput(e) {
+  if (!gameStarted) return;
+  if (e.target === canvas) {
+    e.preventDefault();
+    jump();
+  }
+}
+
+document.addEventListener("keydown", e => {
+  if (e.code === "Space" && gameStarted) {
+    e.preventDefault();
+    jump();
+  }
+});
+
+drawInitialState();
 
 // Start button click handler
 startButton.addEventListener("click", () => {
