@@ -1,7 +1,10 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
+const startButton = document.getElementById("startButton");
 
-// Simple scaling for smaller screens (optional)
+let gameStarted = false;
+
+// Scaling for smaller screens
 function fitCanvasToWindow() {
   const maxWidth = Math.min(window.innerWidth - 20, 800);
   const aspect = canvas.width / canvas.height;
@@ -16,6 +19,8 @@ let obstacles = [{ x: 600, width: 20, height: 30 }];
 let speed = 4;
 
 function draw() {
+  if (!gameStarted) return;
+  
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // Background
@@ -77,15 +82,27 @@ document.addEventListener("keydown", e => {
   }
 });
 
-// Works on laptops, phones, tablets — covers all input types
 function handleInput(e) {
   e.preventDefault();
   jump();
 }
 
-// Listen on the entire document
 document.addEventListener("mousedown", handleInput);
 document.addEventListener("touchstart", handleInput, { passive: false });
 document.addEventListener("pointerdown", handleInput);
 
-draw();
+// Initial draw to show the game state
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+ctx.fillStyle = "skyblue";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.fillStyle = "green";
+ctx.fillRect(0, 270, canvas.width, 30);
+ctx.fillStyle = "red";
+ctx.fillRect(player.x, player.y, player.size, player.size);
+
+// Start button click handler
+startButton.addEventListener("click", () => {
+  gameStarted = true;
+  startButton.style.display = "none";
+  draw();
+});
