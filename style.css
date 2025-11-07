@@ -18,14 +18,11 @@ canvas {
 
 #startButton {
   display: block;
-  /* margin: 1rem auto; */
-  /* padding: 0.5rem 2rem; */
-  /* font-size: 1.2rem; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: #007acc;
-  color: white;
-  /* border: none; */
-  /* border-radius: 4px; */
-  /* cursor: pointer; */
 }
 
 #startButton:hover {
