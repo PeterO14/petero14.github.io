@@ -97,15 +97,21 @@ function jump() {
 // Input handling
 function handleInput(e) {
   if (!gameStarted) return;
-  if (e.target === canvas) {
+  if (e.target === canvas || e.type === 'keydown') {
     e.preventDefault();
     jump();
   }
 }
 
+// Event listeners
 document.addEventListener("mousedown", handleInput);
 document.addEventListener("touchstart", handleInput, { passive: false });
 document.addEventListener("pointerdown", handleInput);
+document.addEventListener("keydown", (e) => {
+  if (e.code === "Space") {
+    handleInput();
+  }
+});
 
 // Initial game state
 function initializeGame() {

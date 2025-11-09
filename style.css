@@ -16,6 +16,8 @@ canvas {
   height: auto;
   display: block;
   margin: 0 auto;
+  border: 5px solid #000000;
+  border-radius: 15px;
 }
 
 .container {
@@ -29,8 +31,16 @@ canvas {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #007acc;
+  color: white;
+  padding: 15pc 30px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 #startButton:hover {
-  background-color: #005a9c;
+  background-color: white;
+  color: black
 }
