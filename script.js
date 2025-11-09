@@ -1,8 +1,11 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 const startButton = document.getElementById("startButton");
+const gameOverScreen = document.getElementById("gameOverScreen");
+const playAgainButton = document.getElementById("playAgainButton");
 
 let gameStarted = false;
+let score = 0;
 
 // Constants
 const GRAVITY = 0.5;
@@ -36,7 +39,7 @@ function draw() {
   drawObstacles();
   updatePhysics();
   checkCollisions();
-  
+  updateScore();  
   requestAnimationFrame(draw);
 }
 
@@ -80,10 +83,53 @@ function checkCollisions() {
       player.x + player.size > obs.x &&
       player.y + player.size > GROUND_Y - obs.height
     ) {
-      alert("Game Over!");
-      document.location.reload();
+      gameOver();
     }
   }
+}
+
+// Update the leadership function
+function updateLeaderboard() {
+  let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+  leaderboard.push(score);
+  leaderboard.sort((a, b) => b - a);
+  localStorage.setItem("leaderboard", JSON.stringify(leaderboard.slice(0, 5)));
+
+  const leaderboardList = document.getElementById("leaderboardList");
+  leaderboardList.innerHTML = "";
+  leaderboard.forEach((s) => {
+    const li = document.createElement("li");
+    li.textContent = s;
+    leaderboardList.appendChild(li);
+  });
+}
+
+// Game over function
+function gameOver() {
+  gameStarted = false;
+  gameOverScreen.style.display = "block";
+  startButton.style.display = "none";
+
+  // Display the final score
+  document.getElementById("finalScore").textContent = score;
+
+  // Update and display leaderboard
+  updateLeaderboard();
+}
+
+// Play again button handler
+playAgainButton.addEventListener("click", () => {
+  resetGame();
+});
+  
+// Reset game function
+function resetGame() {
+  player = { x: 50, y: GROUND_Y - PLAYER_SIZE, size: PLAYER_SIZE, vy: 0, grounded: true };
+  obstacles = [{ x: 600, width: 20, height: 20 }];
+  gameOverScreen.style.display = "none";
+  startButton.style.display = "block";
+  initializeGame();
+  gameStarted = true;
 }
 
 // Jump function
@@ -92,6 +138,10 @@ function jump() {
     player.vy = JUMP_VELOCITY
     player.grounded = false;
   }
+}
+
+function updateScore() {
+  score++;
 }
 
 // Input handling
@@ -109,7 +159,7 @@ document.addEventListener("touchstart", handleInput, { passive: false });
 document.addEventListener("pointerdown", handleInput);
 document.addEventListener("keydown", (e) => {
   if (e.code === "Space") {
-    handleInput();
+    handleInput(e);
   }
 });
 
