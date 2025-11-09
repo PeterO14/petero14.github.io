@@ -26,7 +26,7 @@ window.addEventListener("resize", fitCanvasToWindow);
 
 // Player and obstacles
 let player = { x: 50, y: GROUND_Y - PLAYER_SIZE, size: PLAYER_SIZE, vy: 0, grounded: true };
-let obstacles = [{ x: 600, width: 20, height: -10 }];
+let obstacles = [{ x: 600, width: 20, height: 20 }];
 
 
 // Game loop
