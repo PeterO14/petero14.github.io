@@ -44,3 +44,16 @@ canvas {
   background-color: white;
   color: black
 }
+
+#gameOverScreen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    color: white;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 20px;
+    z-index: 10; /* Ensure it appears above other elements */
+}
