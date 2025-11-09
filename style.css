@@ -16,7 +16,7 @@ canvas {
   height: auto;
   display: block;
   margin: 0 auto;
-  border: 5px solid #000000;
+  border: 1px solid #000000;
   border-radius: 15px;
 }
 
@@ -32,10 +32,10 @@ canvas {
   transform: translate(-50%, -50%);
   background-color: #007acc;
   color: white;
-  padding: 15pc 30px;
+  padding: 5px 10px;
   font-size: 20px;
-  border: none;
-  border-radius: 5px;
+  border: 1px solid #000000;
+  border-radius: 15px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
