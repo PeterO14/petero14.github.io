@@ -45,10 +45,26 @@ canvas {
   color: black
 }
 
+#playAgainButton {
+  background-color: #007acc;
+  color: white;
+  padding: 5px 10px;
+  font-size: 20px;
+  border: 1px solid #000000;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#playAgainButton:hover {
+  background-color: white;
+  color: black
+}
+
 #gameOverScreen {
   width: 300px;
   height: auto;
-  position: absolute;
+  /* position: absolute; */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -58,4 +74,11 @@ canvas {
   border-radius: 15px;
   padding: 20px;
   text-align: center;
+}
+
+#leaderboardList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
 }
