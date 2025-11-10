@@ -97,7 +97,7 @@ function updateLeaderboard() {
 
   const leaderboardList = document.getElementById("leaderboardList");
   leaderboardList.innerHTML = "";
-  leaderboard.forEach((s) => {
+  leaderboard.slice(0, 5).forEach((s) => {
     const li = document.createElement("li");
     li.textContent = s;
     leaderboardList.appendChild(li);
