@@ -22,6 +22,11 @@ canvas {
 
 .container {
   position: relative;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
  
 #startButton {
@@ -79,6 +84,7 @@ canvas {
 #leaderboardList {
   list-style-type: none;
   padding: 0;
-  margin: 0;
+  margin: 10px 0;
   font-size: 16px;
+  text-align: center;
 }
