@@ -60,6 +60,8 @@ header {
     left: 50%;
     transform: translate(-50%, -50%);
     display: none;
+    height: 75%;
+    width: auto;
     color: black;
     border: 1px solid black;
     border-radius: 15px;
