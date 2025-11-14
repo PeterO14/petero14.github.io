@@ -1,48 +1,51 @@
 body {
-  font-family: system-ui, sans-serif;
-  margin: 0;
-  padding: 2rem 1rem;
-  background-color: #ffffff;
-  color: #333;
-  text-align: left;
+    background-color: rgba(128, 128, 128, 0.5);
+    font-family: system-ui, sans-serif;
 }
 
 header {
-  font-weight: bold;
+    background-color: green;
 }
 
-canvas {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  border: 1px solid #000000;
-  border-radius: 15px;
+#aboutMe {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+#projects {
+    background-color: rgba(0, 0, 255, 0.5);
+}
+
+#miniGeometryDash {
+    background-color: rgba(75, 18, 75, 0.5);
 }
 
 .container {
-  position: relative;
-  width: 100%;
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background-color: rgba(201, 139, 24, 0.5);
+    position: relative;
+    display: inline-block;
 }
- 
+
+#gameCanvas {
+    background-color: rgba(25, 92, 13, 0.5);
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 #startButton {
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #007acc;
-  color: white;
-  padding: 5px 10px;
-  font-size: 20px;
-  border: 1px solid #000000;
-  border-radius: 15px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+    background-color: rgba(255, 20, 147, 0.5);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* background-color: #007acc; */
+    color: white;
+    padding: 15px 35px;
+    font-size: 20px;
+    border: 2px solid black;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 #startButton:hover {
@@ -50,6 +53,21 @@ canvas {
   color: black
 }
 
+#gameOverScreen {
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    color: black;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+}
+
+/*
 #playAgainButton {
   background-color: #007acc;
   color: white;
@@ -66,25 +84,10 @@ canvas {
   color: black
 }
 
-#gameOverScreen {
-  width: 300px;
-  height: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  color: black;
-  border: 1px solid black;
-  border-radius: 15px;
-  padding: 20px;
-  text-align: center;
-}
-
 #leaderboardList {
   list-style-type: none;
   padding: 0;
   margin: 10px 0;
   font-size: 16px;
   text-align: center;
-}
+} */
